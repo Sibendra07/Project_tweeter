@@ -1,0 +1,16 @@
+{% extends "layout.html" %}
+
+{% block title %}
+Sibendra Tweeter
+{% endblock %}
+
+{% block content %}
+<h1 class="text-center text-white mt-4 ">
+    Are you sure,You want to delete the tweet?
+</h1>
+<form method="POST">
+    {% csrf_token %}
+    <button class ="btn btn-danger" type="submit">Delete</button>
+    <a class = "btn btn-success" href = "{% url 'tweet_list' %}">Cancel</a>
+</form>
+{% endblock %}
