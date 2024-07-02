@@ -136,3 +136,6 @@ STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
 LOGIN_URL = '/accounts/login'
 
 LOGIN_REDIRECT_URL = '/tweet/'
+
+# Assuming you use this in the command or a settings file
+port = os.environ.get('PORT', '8000')  # Default to 8000 if PORT is not set
