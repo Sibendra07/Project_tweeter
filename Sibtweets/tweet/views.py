@@ -5,6 +5,7 @@ from django.shortcuts import get_object_or_404,redirect
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import login
 from .forms import UserRegistrationForm
+from django.views.decorators.csrf import csrf_exempt
 # Create your views here.
 def index(request):
     return render(request, 'index.html')
@@ -26,7 +27,8 @@ def tweet_create(request):
     else: 
         form = TweetForm()
         return render(request,'tweet_form.html',{'form':form})
-    
+
+
 @login_required    
 def tweet_edit(request,tweet_id):
     tweet = get_object_or_404(Tweet,pk=tweet_id,user =request.user)
@@ -41,6 +43,7 @@ def tweet_edit(request,tweet_id):
         form = TweetForm(instance=tweet)
         return render(request,'tweet_form.html',{'form':form})
 
+
 @login_required    
 def tweet_delete(request,tweet_id):
     tweet = get_object_or_404(Tweet,pk=tweet_id,user=request.user)
@@ -49,6 +52,7 @@ def tweet_delete(request,tweet_id):
         return redirect('tweet_list')
     return render(request,'tweet_confirm_delete.html',{'tweet':tweet})
 
+@csrf_exempt
 def register(request):
     if request.method == 'POST':
         form = UserRegistrationForm(request.POST)
