@@ -140,7 +140,7 @@ LOGIN_REDIRECT_URL = '/tweet/'
 # Assuming you use this in the command or a settings file
 port = os.environ.get('PORT', '8000')  # Default to 8000 if PORT is not set
 
-CSRF_TRUSTED_ORIGINS = ['https://project-tweeter-1.onrender.com/']
+CSRF_TRUSTED_ORIGINS = ['https://project-tweeter-1.onrender.com']
 
 CSRF_COOKIE_SECURE = True
 SESSION_COOKIE_SECURE = True

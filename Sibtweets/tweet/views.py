@@ -10,7 +10,6 @@ from django.views.decorators.csrf import csrf_exempt
 def index(request):
     return render(request, 'index.html')
 
-
 def tweet_list(request):
     tweets = Tweet.objects.all().order_by('-created_at')
     return render(request, 'tweet_list.html', {'tweets':tweets})
@@ -28,7 +27,6 @@ def tweet_create(request):
         form = TweetForm()
         return render(request,'tweet_form.html',{'form':form})
 
-
 @login_required    
 def tweet_edit(request,tweet_id):
     tweet = get_object_or_404(Tweet,pk=tweet_id,user =request.user)
@@ -43,7 +41,6 @@ def tweet_edit(request,tweet_id):
         form = TweetForm(instance=tweet)
         return render(request,'tweet_form.html',{'form':form})
 
-
 @login_required    
 def tweet_delete(request,tweet_id):
     tweet = get_object_or_404(Tweet,pk=tweet_id,user=request.user)
@@ -52,7 +49,6 @@ def tweet_delete(request,tweet_id):
         return redirect('tweet_list')
     return render(request,'tweet_confirm_delete.html',{'tweet':tweet})
 
-@csrf_exempt
 def register(request):
     if request.method == 'POST':
         form = UserRegistrationForm(request.POST)
